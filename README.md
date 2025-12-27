@@ -2,7 +2,7 @@
 
 Este demo muestra las posibiliddades que permite c#  para manejar las finanzas personales
 
-![Diagrama](UML.svg)
+![Diagrama](arquitectura.svg)
 
 Bibliografía:
 
