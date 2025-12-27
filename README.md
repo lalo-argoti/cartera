@@ -1,4 +1,6 @@
-# [PiedraVsTijera](http://51.222.159.144:4200/) 
+# [Cartera Virtual](http://51.222.159.144:4200/) 
+
+Este demo muestra las posibiliddades que permite c#  para manejar las finanzas personales
 
 ![Diagrama](UML.svg)
 
