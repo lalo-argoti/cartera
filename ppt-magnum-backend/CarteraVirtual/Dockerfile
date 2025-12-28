@@ -1,24 +1,20 @@
-# Usa imagen oficial de .NET SDK para compilación (fase 1)
+# ========= BUILD =========
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
+WORKDIR /src
 
-WORKDIR /app
-
-# Copia archivos de proyecto y restaura dependencias usando caché
-COPY *.csproj ./
+# Capa cacheable (restore)
+COPY CarteraVirtual.csproj .
 RUN dotnet restore
 
-# Copia el resto del código fuente
-COPY . ./
+# Código fuente
+COPY . .
+RUN dotnet publish -c Release -o /app/out --no-restore
 
-# Publica la aplicación (genera binarios listos para producción)
-RUN dotnet publish -c Release -o out
-
-# Imagen final con .NET Runtime (fase 2)
+# ========= RUNTIME =========
 FROM mcr.microsoft.com/dotnet/aspnet:8.0
-
 WORKDIR /app
+
 COPY --from=build /app/out .
 
 EXPOSE 8000
-
 ENTRYPOINT ["dotnet", "CarteraVirtual.dll"]
